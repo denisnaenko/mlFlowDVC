@@ -1,0 +1,54 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python src/preprocess.py
+    deps:
+    - path: data/raw/automobile_prices_economics_2019_2023.csv
+      hash: md5
+      md5: 2b81c2d62ddc0c09185a0259f5bea1f5
+      size: 2916
+    - path: src/preprocess.py
+      hash: md5
+      md5: 9d0636c7999a32a9831cb47a46da010d
+      size: 1047
+    outs:
+    - path: data/processed/cleaned.csv
+      hash: md5
+      md5: 10c4ddbf60f4831308bfae4bff15db5f
+      size: 2668
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed/cleaned.csv
+      hash: md5
+      md5: 10c4ddbf60f4831308bfae4bff15db5f
+      size: 2668
+    - path: src/train.py
+      hash: md5
+      md5: 41acb3322772beaaf8af725a48b3a8e3
+      size: 2110
+    outs:
+    - path: metrics/scores.json
+      hash: md5
+      md5: 487d762879282a5f02274b02b1046742
+      size: 156
+    - path: models/model.joblib
+      hash: md5
+      md5: 7ff1985532d2d5ddc3ea9b2f3b260e23
+      size: 62289
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: data/processed/cleaned.csv
+      hash: md5
+      md5: 10c4ddbf60f4831308bfae4bff15db5f
+      size: 2668
+    - path: models/model.joblib
+      hash: md5
+      md5: 7ff1985532d2d5ddc3ea9b2f3b260e23
+      size: 62289
+    outs:
+    - path: metrics/evaluation.json
+      hash: md5
+      md5: c60f832f1e11ac1da6ba0e67d60df1f4
+      size: 68

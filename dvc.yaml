@@ -15,12 +15,12 @@ stages:
     outs:
       - models/model.joblib
     metrics:
-      - metrics/train_scores.json # Уникальное имя
+      - metrics/scores.json
 
   evaluate:
     cmd: python src/evaluate.py
     deps:
       - models/model.joblib
-      - src/evaluate.py
+      - data/processed/cleaned.csv
     metrics:
-      - metrics/evaluate_scores.json # Уникальное имя
+      - metrics/evaluation.json
