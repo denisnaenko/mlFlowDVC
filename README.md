@@ -37,8 +37,8 @@ pip install -r requirements.txt
 
 1. Склонируйте репозиторий:
 ```bash
-git clone <your-repo-url>
-cd <project-folder>
+git clone https://github.com/denisnaenko/mlFlowDVC.git
+cd mlFlowDVC
 ```
 
 2. Инициализируйте DVC:
