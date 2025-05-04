@@ -1,0 +1,6 @@
+preprocess:
+  min_price: 1000 # Минимальная цена для фильтрации
+
+train:
+  n_estimators: 100
+  max_depth: 10

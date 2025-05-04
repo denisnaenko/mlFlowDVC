@@ -1,0 +1,8 @@
+# Данные и модели
+/data/
+/models/
+/metrics/
+
+# DVC
+.dvc/tmp/
+.dvc/cache/

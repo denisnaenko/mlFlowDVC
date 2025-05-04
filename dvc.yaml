@@ -1,0 +1,26 @@
+stages:
+  prepare:
+    cmd: python src/preprocess.py
+    deps:
+      - data/raw/automobile_prices_economics_2019_2023.csv
+      - src/preprocess.py
+    outs:
+      - data/processed/cleaned.csv
+
+  train:
+    cmd: python src/train.py
+    deps:
+      - data/processed/cleaned.csv
+      - src/train.py
+    outs:
+      - models/model.joblib
+    metrics:
+      - metrics/train_scores.json # Уникальное имя
+
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+      - models/model.joblib
+      - src/evaluate.py
+    metrics:
+      - metrics/evaluate_scores.json # Уникальное имя
